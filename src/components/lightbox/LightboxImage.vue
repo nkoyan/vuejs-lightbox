@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div v-if="image" class="lightbox__loading"></div>
-        <img @click.stop :src="src" alt="" :style="style" class="lightbox__image">
+        <div v-if="loading" class="lightbox__loading"></div>
+
+        <transition name="fade">
+            <img @click.stop @load="onLoaded" v-show="!loading" :src="src" alt="" :style="style" :key="src" class="lightbox__image">
+        </transition>
     </div>
 </template>
 
@@ -38,14 +41,17 @@
                     top: ((window.innerHeight - height) / 2) + 'px',
                     left: ((window.innerWidth - width) / 2) + 'px'
                 }
+            },
+            onLoaded () {
+                this.loading = false
             }
         },
         mounted () {
             let image = new Image()
             image.onload = () => {
-                this.loading = false
                 this.src = this.image
                 this.resizeImage(image)
+                //this.loading = false
             }
             image.src = this.image
             window.addEventListener('resize', () => this.resizeImage(image))
@@ -54,5 +60,11 @@
 </script>
 
 <style scoped>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 0.3s;
+    }
 
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
 </style>
