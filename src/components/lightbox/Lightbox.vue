@@ -1,5 +1,5 @@
 <template>
-    <div class="lightbox" v-if="image">
+    <div class="lightbox" v-if="image" @click="close">
         <lightbox-image :image="image"></lightbox-image>
     </div>
 </template>
@@ -21,6 +21,11 @@
                 if (this.state.index !== false) {
                     return this.state.images[this.state.index]
                 }
+            }
+        },
+        methods: {
+            close () {
+                store.close()
             }
         }
     }

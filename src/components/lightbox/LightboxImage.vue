@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="loading">Chargement...</div>
-        <img :src="src" alt="" :style="style" class="lightbox__image">
+        <img  @click.stop :src="src" alt="" :style="style" class="lightbox__image">
     </div>
 </template>
 
