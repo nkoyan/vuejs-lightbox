@@ -51,11 +51,14 @@
             image.onload = () => {
                 this.src = this.image
                 this.resizeImage(image)
-                //this.loading = false
             }
             image.src = this.image
-            window.addEventListener('resize', () => this.resizeImage(image))
-        }
+            this.resizeEvent = () => this.resizeImage(image)
+            window.addEventListener('resize', this.resizeEvent)
+        },
+         destroyed () {
+            window.removeEventListener('resize', this.resizeEvent)
+         }
     }
 </script>
 
