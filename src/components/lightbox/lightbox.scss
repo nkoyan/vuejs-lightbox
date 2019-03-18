@@ -21,12 +21,35 @@
   background: url("cross.svg") transparent;
   background-size: 50px 50px;
   transition: transform 0.3s;
-
-  &:hover {
-    transform: scale(1.2);
-    cursor: pointer;
-  }
 }
+
+.lightbox__btn {
+  position: fixed;
+  top: 50%;
+  width: 50px;
+  height: 90px;
+  margin-top: -40px;
+  background-color: transparent;
+  background-size: 50px 90px;
+  transition: transform 0.3s;
+}
+
+
+.lightbox__btn:hover, .lightbox__close:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.lightbox__prev {
+  left: 20px;
+  background-image: url(prev.svg);
+}
+
+.lightbox__next {
+  right: 20px;
+  background-image: url(next.svg);
+}
+
 
 .lightbox__loading {
   position: fixed;

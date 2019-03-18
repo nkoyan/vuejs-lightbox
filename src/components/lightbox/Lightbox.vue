@@ -1,7 +1,12 @@
 <template>
     <div class="lightbox" v-if="image" @click="close">
-        <lightbox-image :image="image"></lightbox-image>
+        <transition name="lightbox-fade">
+            <lightbox-image :image="image" :key="image"></lightbox-image>
+        </transition>
+
         <div class="lightbox__close" @click="close"></div>
+        <div class="lightbox__btn lightbox__prev" @click.stop.prevent="prev"></div>
+        <div class="lightbox__btn lightbox__next" @click.stop.prevent="next"></div>
     </div>
 </template>
 
@@ -25,9 +30,9 @@
             }
         },
         methods: {
-            close () {
-                store.close()
-            }
+            close () { store.close() },
+            prev () { store.prev() },
+            next () { store.next() }
         }
     }
 </script>
