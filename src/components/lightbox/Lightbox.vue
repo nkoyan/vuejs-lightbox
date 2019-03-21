@@ -1,6 +1,6 @@
 <template>
     <div class="lightbox" v-if="image" @click="close">
-        <transition name="lightbox-fade">
+        <transition :name="transition">
             <lightbox-image :image="image" :key="image"></lightbox-image>
         </transition>
 
@@ -19,7 +19,8 @@
         components: { LightboxImage },
         data () {
             return {
-                state: store.state
+                state: store.state,
+                direction: 'next'
             }
         },
         computed: {
@@ -27,12 +28,23 @@
                 if (this.state.index !== false) {
                     return this.state.images[this.state.index]
                 }
+            },
+            transition () {
+                return `lightbox-${this.direction}`
             }
         },
         methods: {
-            close () { store.close() },
-            prev () { store.prev() },
-            next () { store.next() }
+            close () {
+                store.close()
+            },
+            prev () {
+                this.direction = 'prev'
+                store.prev()
+            },
+            next () {
+                this.direction = 'next'
+                store.next()
+            }
         }
     }
 </script>

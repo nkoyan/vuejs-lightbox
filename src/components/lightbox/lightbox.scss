@@ -75,6 +75,52 @@
   }
 }
 
+.lightbox-next-enter-active, .lightbox-next-leave-active {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.lightbox-next-enter-active {
+  transition-delay: 0.3s;
+}
+
+.lightbox-next-enter {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.lightbox-next-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.lightbox-prev-enter-active, .lightbox-prev-leave-active {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.lightbox-prev-enter-active {
+  transition-delay: 0.3s;
+}
+
+.lightbox-prev-enter {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.lightbox-prev-leave-to {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
 @keyframes lightbox-loading {
   0% {
     opacity: 0.5;
